@@ -17,7 +17,8 @@ class Rectangle :
             self.height=height
         else :
             self.height=0
-
+        self.x = 0
+        self.y = 0
         self.turtle=turtle.clone() #Make a new turtle object just for this instance so that drawings can be cleared.
         turtle.speed(0) #Make turtle move as fast as possible.
         self.has_been_drawn=False #Keep track of whether shape has been drawn.
@@ -49,7 +50,9 @@ class Rectangle :
         Calculate the area of the shape
         """
         return self.length*self.height
-
+    def set_start(self,x,y):
+        self.x = x
+        self.y = y
     def draw_shape(self):
         """
         Draw the shape, starting at 0,0.
@@ -58,11 +61,11 @@ class Rectangle :
         """
         self.turtle.clear() #Remove old drawings (if they exist)
         self.turtle.penup()
-        self.turtle.goto(0,0)
+        self.turtle.goto(self.x,self.y)
         self.turtle.pendown()
-        self.turtle.goto(self.length,0)
-        self.turtle.goto(self.length,self.height)
-        self.turtle.goto(0,self.height)
-        self.turtle.goto(0,0)
+        self.turtle.goto(self.length+self.x,0+self.y)
+        self.turtle.goto(self.length+self.x,self.height+self.y)
+        self.turtle.goto(0+self.x,self.height+self.y)
+        self.turtle.goto(self.x,self.y)
         self.turtle.penup()
         self.has_been_drawn=True
